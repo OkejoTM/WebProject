@@ -9,7 +9,7 @@ const CategoryList: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);    
 
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);  
 
   useEffect(() => {
     const fetchCategories = async () => {

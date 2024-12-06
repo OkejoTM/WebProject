@@ -22,6 +22,7 @@ const FiltersForm: React.FC<FiltersFormProps> = ({ onApply, categoryId }: Filter
   const [maxPrice, setMaxPrice] = useState<number>(Infinity);
   const [genresList, setGenresList] = useState<string[]>([]);
 
+
   useEffect(() => {
     const fetchGenres = async () => {
       try {

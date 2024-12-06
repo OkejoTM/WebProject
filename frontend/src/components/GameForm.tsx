@@ -12,7 +12,7 @@ interface GameFormProps {
 const GameForm: React.FC<GameFormProps> = ({
   game = { title: "Новая игра", description: "", bought: false, price: 0 }, categoryId
 }) => {
-  const router = useRouter();
+  const router = useRouter();  
 
   const [formData, setFormData] = useState({
     id: game.id,

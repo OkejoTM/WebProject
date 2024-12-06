@@ -10,7 +10,7 @@ import { ApiService } from "@/data/apiService";
 export default function EditGamePage() {
   const params = useParams();
   const categoryId = Number(params.category_id); // Извлекаем category_id из пути
-  const gameId = Number(params.game_id); // Извлекаем game_id из пути
+  const gameId = Number(params.game_id); // Извлекаем game_id из пути  
 
   const [game, setGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);

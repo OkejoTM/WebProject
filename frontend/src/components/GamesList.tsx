@@ -11,6 +11,8 @@ interface GamesListProps {
 const GamesList: React.FC<GamesListProps> = ({ categoryId }) => {
   const [games, setGames] = useState<Game[]>([]);
   const [filteredGames, setFilteredGames] = useState<Game[]>([]);
+
+
   const [filter, setFilter] = useState<{
     bought: string;
     genres: string[];

@@ -3,6 +3,7 @@ import { ArrowLeft, Save, Plus, Trash2 } from "lucide-react";
 import { Category } from "../../data/categoryType";
 import { useRouter } from "next/navigation";
 import { ApiService } from "@/data/apiService";
+import withAuth from "../other/withAuth";
 
 interface CategoryFormProps {
   category?: Partial<Category>;
@@ -11,7 +12,7 @@ interface CategoryFormProps {
 const CategoryForm: React.FC<CategoryFormProps> = ({
   category = { name: "Новая категория" },
 }) => {
-  const router = useRouter();
+  const router = useRouter();  
 
   const [formData, setFormData] = useState({
     id: category.id,
@@ -71,4 +72,4 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   );
 };
 
-export default CategoryForm;
+export default withAuth(CategoryForm);
