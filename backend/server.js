@@ -7,14 +7,20 @@ const prisma = new PrismaClient();
 
 dotenv.config();
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.CORS_HOST_URL, // Разрешить только фронтенду с таким URL
+  methods: 'GET,POST,PUT,DELETE', // Разрешить определённые HTTP методы
+  allowedHeaders: 'Content-Type,Authorization', // Разрешить определённые заголовки
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+
 
 // API Routes
 const gamesRoutes = require('./routes/games');
 const categoriesRoutes = require('./routes/categories');
 const authRotes = require('./routes/auth');
-const authenticateToken = require("./middlewares/auth");
 
 app.use('/api/games', gamesRoutes);
 app.use('/api/categories', categoriesRoutes);

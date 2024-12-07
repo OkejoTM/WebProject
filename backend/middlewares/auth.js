@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const SECRET_KEY = process.env.JWT_SECRET || 'your_secret_key';
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -12,7 +12,7 @@ const authenticateToken = (req, res, next) => {
 
   jwt.verify(token, SECRET_KEY, (err, user) => {
     if (err) {
-      return res.status(403).json({ message: 'Invalid token.' });
+      return res.status(403).json({ message: 'Invalid token.'});
     }
     req.user = user; // Сохраняем данные пользователя в запросе
     next();

@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import { notFound, useParams } from "next/navigation";
 import GameForm from "../../../../../../../components/GameForm";
-
 import { Game } from "../../../../../../../data/gameType";
 import { ApiService } from "@/data/apiService";
+import withAuth from "@/components/other/withAuth";
 
-export default function EditGamePage() {
+function EditGamePage() {
   const params = useParams();
-  const categoryId = Number(params.category_id); // Извлекаем category_id из пути
-  const gameId = Number(params.game_id); // Извлекаем game_id из пути  
+  const categoryId = Number(params.category_id);
+  const gameId = Number(params.game_id);
 
   const [game, setGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
@@ -20,12 +20,10 @@ export default function EditGamePage() {
       if (!isNaN(gameId)) {
         try {
           const fetchedGame = await ApiService.getGameById(gameId);
-
-          // Проверка: игра должна быть связана с категорией
           if (fetchedGame && fetchedGame.categoryId === categoryId) {
             setGame(fetchedGame);
           } else {
-            setGame(null); // Игра не найдена или не принадлежит категории
+            setGame(null);
           }
         } catch (error) {
           console.error("Ошибка загрузки игры:", error);
@@ -49,7 +47,9 @@ export default function EditGamePage() {
   return (
     <>
       <h1 className="page-title">Редактирование игры</h1>
-      <GameForm game={game} categoryId={categoryId} /> {/* Передаем game и categoryId */}
+      <GameForm game={game} categoryId={categoryId} />
     </>
   );
 }
+
+export default withAuth(EditGamePage);

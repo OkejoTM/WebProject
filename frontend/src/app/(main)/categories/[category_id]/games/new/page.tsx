@@ -2,15 +2,18 @@
 
 import GameForm from "../../../../../../components/GameForm";
 import { useParams } from "next/navigation";
+import withAuth from "@/components/other/withAuth";
 
-export default function NewGamePage() {
+function NewGamePage() {
   const params = useParams();
-  const categoryId = Number(params.category_id); // Получение category_id из маршрута
+  const categoryId = Number(params.category_id);
 
   return (
     <>
       <h1 className="page-title">Создать новую игру</h1>
-      <GameForm categoryId={categoryId} /> {/* Передача categoryId в GameForm */}
+      <GameForm categoryId={categoryId} />
     </>
   );
 }
+
+export default withAuth(NewGamePage);

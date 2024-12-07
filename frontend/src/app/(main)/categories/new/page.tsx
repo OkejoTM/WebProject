@@ -2,8 +2,9 @@
 
 import CategoryForm from "../../../../components/category/CategoryForm";
 import { useParams } from "next/navigation";
+import withAuth from "@/components/other/withAuth";
 
-export default function NewGamePage() {
+function NewCategoryPage() {
   const params = useParams();
 
   return (
@@ -13,3 +14,5 @@ export default function NewGamePage() {
     </>
   );
 }
+
+export default withAuth(NewCategoryPage);

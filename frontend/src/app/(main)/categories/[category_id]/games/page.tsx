@@ -1,5 +1,10 @@
-import GamesPage from '../../../../../components/GamePage';
+"use client";
 
-export default function HomePage() {
-	return (<GamesPage />);
+import GamesPage from "../../../../../components/GamePage";
+import withAuth from "@/components/other/withAuth";
+
+function HomePage() {
+  return <GamesPage />;
 }
+
+export default withAuth(HomePage);

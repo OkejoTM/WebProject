@@ -3,7 +3,6 @@ import { ArrowLeft, Save, Plus, Trash2 } from "lucide-react";
 import { Category } from "../../data/categoryType";
 import { useRouter } from "next/navigation";
 import { ApiService } from "@/data/apiService";
-import withAuth from "../other/withAuth";
 
 interface CategoryFormProps {
   category?: Partial<Category>;
@@ -72,4 +71,4 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   );
 };
 
-export default withAuth(CategoryForm);
+export default CategoryForm;

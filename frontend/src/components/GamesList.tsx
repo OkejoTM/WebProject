@@ -36,7 +36,7 @@ const GamesList: React.FC<GamesListProps> = ({ categoryId }) => {
         setFilteredGames(data);
       } catch (err) {
         setError("Не удалось загрузить игры.");
-        console.error(err);
+        console.log(err);
       } finally {
         setLoading(false);
       }

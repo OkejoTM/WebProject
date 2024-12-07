@@ -22,27 +22,37 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h1>Регистрация</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Имя пользователя</label>
+    <div className="auth-container">
+      <h1 className="auth-title">Регистрация</h1>
+      {error && <p className="auth-error">{error}</p>}
+      <form onSubmit={handleSubmit} className="auth-form">
+        <div className="auth-form-group">
+          <label htmlFor="username" className="auth-label">
+            Имя пользователя
+          </label>
           <input
             type="text"
+            id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className="auth-input"
           />
         </div>
-        <div>
-          <label>Пароль</label>
+        <div className="auth-form-group">
+          <label htmlFor="password" className="auth-label">
+            Пароль
+          </label>
           <input
             type="password"
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="auth-input"
           />
         </div>
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit" className="auth-button">
+          Зарегистрироваться
+        </button>
       </form>
     </div>
   );

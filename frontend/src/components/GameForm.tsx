@@ -23,7 +23,7 @@ const GameForm: React.FC<GameFormProps> = ({
     genres: game?.genres || [], 
   });
   
-  categoryId // Тут хз
+  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
