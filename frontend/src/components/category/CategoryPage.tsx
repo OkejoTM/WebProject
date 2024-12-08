@@ -18,7 +18,7 @@ const CategoriesPage = () => {
         const categories = await ApiService.getCategories();
         setCategories(categories);
       } catch (err) {
-        setError('Не удалось загрузить игры');
+        setError('Не удалось загрузить категории');
         console.error(err);
       } finally {
         setLoading(false);

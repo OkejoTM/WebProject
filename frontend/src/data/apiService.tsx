@@ -2,7 +2,7 @@ import { Game } from './gameType';
 import { Category } from './categoryType';
 
 export class ApiService {
-    static baseUrl = "http://localhost:4000/api";
+    static baseUrl = process.env.BACKEND_HOST + "/api"; 
   
     // Получение токена
     static getToken(): string | null {
@@ -30,7 +30,10 @@ export class ApiService {
   
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Ошибка запроса");
+        throw {
+          message: errorData.message || "Ошибка запроса",
+          status: response.status
+        };
       }
   
       return await response.json();

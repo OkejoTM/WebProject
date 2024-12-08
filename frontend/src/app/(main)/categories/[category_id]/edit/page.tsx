@@ -10,7 +10,7 @@ import withAuth from "@/components/other/withAuth";
 function EditCategoryPage() {
   const params: { category_id: string } = useParams();
   const router = useRouter();
-  const categoryId = Number(params.category_id); // Преобразуем ID в число
+  const categoryId = Number(params.category_id);
   const [category, setCategory] = useState<Category | null>(null);
   const [loading, setLoading] = useState(true);
   const [notAuth, setNotAuth] = useState(false);
@@ -27,17 +27,16 @@ function EditCategoryPage() {
         if (fetchedCategory) {
           setCategory(fetchedCategory);
         } else {
-          setCategory(null); // Категория не найдена
+          setCategory(null);
         }
       } catch (error: any) {
         console.log("Ошибка загрузки категории:", error);
 
-        // Проверяем, если ошибка из-за отсутствия токена (401)
-        if (error.response?.status === 401) {
-        {
-          setNotAuth(true);
+        if (error.status === 401) {
+          setNotAuth(true); // Неавторизован
+        } else {
+          setCategory(null); // Любая другая ошибка
         }
-      }
       } finally {
         setLoading(false);
       }
@@ -46,12 +45,16 @@ function EditCategoryPage() {
     fetchCategory();
   }, [categoryId, router]);
 
+  if (notAuth) {
+    return <p>Неавторизован. Пожалуйста, войдите в систему.</p>;
+  }
+
   if (loading) {
     return <p>Загрузка...</p>;
   }
 
-  if (!category && !notAuth) {
-    return notFound(); // Выводим 404, если категория не найдена или ошибка
+  if (!category) {
+    return notFound();
   }
 
   return (

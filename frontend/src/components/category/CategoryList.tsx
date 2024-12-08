@@ -18,7 +18,7 @@ const CategoryList: React.FC = () => {
         const categories = await ApiService.getCategories();
         setCategories(categories);
       } catch (err) {
-        setError('Не удалось загрузить игры');
+        setError('Не удалось загрузить категории игр');
         console.error(err);
       } finally {
         setLoading(false);
@@ -57,7 +57,7 @@ const CategoryList: React.FC = () => {
       <div className="games-block">
         <div className="games__list card-list">
           {categories?.length === 0 ? (
-            <h5 className="no-games">Нет игр для отображения</h5>
+            <h5 className="no-games">Нет категорий для отображения</h5>
           ) : (
             categories.map(category => (
               <CategoryCard

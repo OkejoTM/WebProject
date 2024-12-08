@@ -14,6 +14,7 @@ function EditGamePage() {
 
   const [game, setGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
+  const [notAuth, setNotAuth] = useState(false);
 
   useEffect(() => {
     const fetchGame = async () => {
@@ -25,9 +26,15 @@ function EditGamePage() {
           } else {
             setGame(null);
           }
-        } catch (error) {
-          console.error("Ошибка загрузки игры:", error);
-          setGame(null);
+        } catch (error: any) {
+          console.log("Ошибка загрузки игры:", error);
+
+          // Проверяем, если ошибка из-за отсутствия токена (401)
+          if (error.status === 401) {
+            setNotAuth(true); // Неавторизован
+          } else {
+            setGame(null); // Любая другая ошибка
+          }
         }
       }
       setLoading(false);
@@ -40,8 +47,12 @@ function EditGamePage() {
     return <p>Загрузка...</p>;
   }
 
+  if (notAuth) {
+    return <p>Неавторизован. Пожалуйста, войдите в систему.</p>; // Сообщение для неавторизованных пользователей
+  }
+
   if (!game) {
-    return notFound();
+    return notFound(); // Выводим 404, если игра не найдена
   }
 
   return (
