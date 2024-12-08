@@ -21,8 +21,7 @@ services:
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@db:5432/web_db?schema=public"
       SECRET_KEY: "iuwejhtjskgnhr10ph1j4375y135yfa345"
-      CORS_HOST_URL: "http://localhost:3000"
-    command: ["node", "server.js"]
+      CORS_HOST_URL: "http://localhost:3000"    
 
   frontend:
     container_name: web_frontend

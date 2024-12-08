@@ -22,9 +22,9 @@ const gamesRoutes = require('./routes/games');
 const categoriesRoutes = require('./routes/categories');
 const authRotes = require('./routes/auth');
 
-app.use('/api/games', gamesRoutes);
-app.use('/api/categories', categoriesRoutes);
-app.use('/api/auth', authRotes);
+app.use('/games', gamesRoutes);
+app.use('/categories', categoriesRoutes);
+app.use('/auth', authRotes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

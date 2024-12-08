@@ -2,7 +2,7 @@ import { Game } from './gameType';
 import { Category } from './categoryType';
 
 export class ApiService {
-    static baseUrl = process.env.BACKEND_HOST + "/api"; 
+    static baseUrl = "https://games-notes.ru/api"; 
   
     // Получение токена
     static getToken(): string | null {
@@ -35,7 +35,8 @@ export class ApiService {
           status: response.status
         };
       }
-  
+      // console.log("Base url ", this.baseUrl);
+      // console.log("env ", process.env.BACKEND_HOST);
       return await response.json();
     }
   
